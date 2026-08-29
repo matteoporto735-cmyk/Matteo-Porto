@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="FitBooks: guide digitali PDF su alimentazione consapevole, abitudini sane e gestione del peso." />
+  <title>FitBooks — Guide PDF per abitudini più sane</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home">FitBooks</a>
+    <nav>
+      <a href="#catalogo">Catalogo</a>
+      <a href="#come-funziona">Come funziona</a>
+      <a href="#faq">FAQ</a>
+      <button id="cartButton" class="cart-btn" aria-label="Apri carrello">Carrello <span id="cartCount">0</span></button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">EBOOK DIGITALI • DOWNLOAD IMMEDIATO</span>
+        <h1>Piccoli cambiamenti.<br>Abitudini più sane.</h1>
+        <p>Guide pratiche in PDF dedicate ad alimentazione equilibrata, organizzazione dei pasti, movimento e gestione sostenibile del peso.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#catalogo">Scopri gli ebook</a>
+          <a class="btn secondary" href="#come-funziona">Come funziona</a>
+        </div>
+        <p class="micro">Contenuti educativi generali. Non sostituiscono il parere di un medico o dietista.</p>
+      </div>
+      <div class="hero-card">
+        <div class="book-mock">
+          <span>FITBOOKS</span>
+          <strong>21 Giorni di<br>Abitudini Sane</strong>
+          <small>Guida pratica in PDF</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip">
+      <div><strong>PDF immediato</strong><span>Dopo l'acquisto</span></div>
+      <div><strong>Checkout dedicato</strong><span>Pronto per Stripe Checkout</span></div>
+      <div><strong>Approccio realistico</strong><span>Niente promesse miracolose</span></div>
+    </section>
+
+    <section id="catalogo" class="section">
+      <div class="section-heading">
+        <span class="eyebrow">CATALOGO</span>
+        <h2>Scegli la guida più adatta a te</h2>
+        <p>Scegli la guida, aggiungila al carrello e completa l’ordine online.</p>
+      </div>
+      <div id="productGrid" class="product-grid"></div>
+    </section>
+
+    <section id="come-funziona" class="section alt">
+      <div class="section-heading">
+        <span class="eyebrow">SEMPLICE</span>
+        <h2>Come funziona</h2>
+      </div>
+      <div class="steps">
+        <article><span>01</span><h3>Scegli</h3><p>Trova la guida PDF che risponde al tuo obiettivo.</p></article>
+        <article><span>02</span><h3>Acquista</h3><p>Completa il pagamento tramite il tuo provider.</p></article>
+        <article><span>03</span><h3>Scarica</h3><p>Ricevi il link personale al PDF dopo il pagamento.</p></article>
+      </div>
+    </section>
+
+    <section class="section ad-section">
+      <div>
+        <span class="eyebrow">SPOT SOCIAL</span>
+        <h2>Creatività pubblicitaria già pronta</h2>
+        <p>Un messaggio centrato su semplicità e costanza, senza affermazioni sanitarie ingannevoli.</p>
+      </div>
+      <div class="ad-preview">
+        <div class="phone">
+          <div class="phone-screen">
+            <span class="ad-label">Sponsorizzato</span>
+            <h3>Stanco delle diete impossibili da seguire?</h3>
+            <p>Scopri guide pratiche in PDF per organizzare pasti, abitudini e movimento in modo più sostenibile.</p>
+            <button>Scopri FitBooks</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section faq">
+      <div class="section-heading">
+        <span class="eyebrow">FAQ</span>
+        <h2>Domande frequenti</h2>
+      </div>
+      <details>
+        <summary>I PDF garantiscono una perdita di peso?</summary>
+        <p>No. I risultati variano da persona a persona. Le guide offrono informazioni generali e strumenti pratici, ma non garantiscono risultati.</p>
+      </details>
+      <details>
+        <summary>Posso usare queste guide al posto di un professionista?</summary>
+        <p>No. In presenza di patologie, gravidanza, disturbi alimentari, terapie o esigenze specifiche è importante rivolgersi a un medico o dietista qualificato.</p>
+      </details>
+      <details>
+        <summary>Quando ricevo il PDF?</summary>
+        <p>Nel sito finale puoi configurare l'invio automatico del link subito dopo il pagamento.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <strong>FitBooks</strong>
+      <p>Guide digitali per abitudini più sane.</p>
+    </div>
+    <div class="footer-links">
+      <a href="legal.html#privacy">Privacy</a>
+      <a href="legal.html#termini">Termini</a>
+      <a href="legal.html#rimborsi">Rimborsi</a>
+    </div>
+    <p class="disclaimer">Le informazioni presenti sul sito hanno finalità educative generali e non costituiscono diagnosi, prescrizione o trattamento medico.</p>
+  </footer>
+
+  <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
+    <div class="cart-head">
+      <h2>Il tuo carrello</h2>
+      <button id="closeCart" aria-label="Chiudi">×</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="cart-total">
+      <span>Totale</span><strong id="cartTotal">€0,00</strong>
+    </div>
+    <button id="checkoutBtn" class="btn primary full">Vai al checkout</button>
+    <p class="micro">Pagamento reale da attivare collegando Stripe.</p>
+  </aside>
+  <div id="overlay" class="overlay"></div>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
