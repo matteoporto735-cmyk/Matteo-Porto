@@ -1,4 +1,4 @@
-# FitBooks Store
+# FitBooks 
 
 Storefront statico per ebook PDF con catalogo, carrello, checkout dedicato e pagina di conferma ordine.
 
