@@ -1,0 +1,9 @@
+{
+  "name": "fitbooks-store",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FitBooks ecommerce con Stripe Checkout e consegna protetta degli ebook",
+  "dependencies": {
+    "stripe": "^18.5.0"
+  }
+}

@@ -1,44 +1,44 @@
-# FitBooks 
+# FitBooks — checkout Stripe + consegna protetta
 
-Storefront statico per ebook PDF con catalogo, carrello, checkout dedicato e pagina di conferma ordine.
+Questa versione è pronta per essere pubblicata su Vercel (o adattata a un hosting Node/serverless equivalente).
 
-## Avvio locale
-Apri `index.html` nel browser. Il flusso demo funziona senza server:
-1. aggiungi uno o più ebook al carrello;
-2. apri il checkout;
-3. inserisci email e consensi;
-4. conferma l'ordine demo;
-5. visualizza la pagina di conferma.
+## Cosa è già collegato
+- Stripe Checkout creato lato server: nessuna chiave segreta nel browser.
+- Prezzi LIVE FitBooks già mappati nel server.
+- Qualsiasi combinazione di 1 o 2 ebook è acquistabile.
+- Se il cliente seleziona tutti e 3, viene applicato automaticamente il Bundle da €24,90.
+- Dopo il pagamento Stripe reindirizza a `success.html?session_id={CHECKOUT_SESSION_ID}`.
+- La pagina verifica il pagamento direttamente con Stripe prima di mostrare i download.
+- I PDF sono nella cartella privata del server, non nel sito pubblico.
+- I download usano token HMAC temporanei (1 ora).
+- Webhook opzionale pronto per inviare via email il link di consegna usando Resend.
 
-## Importante: pagamenti reali
-Il progetto NON addebita ancora denaro. Per vendere davvero bisogna collegare un provider come Stripe Checkout tramite backend/serverless function. Non inserire mai chiavi segrete Stripe nel JavaScript pubblico del browser.
+## Variabili ambiente obbligatorie
+Copia `.env.example` nelle variabili ambiente dell'hosting e imposta:
 
-Flusso consigliato:
-- browser -> endpoint server `/create-checkout-session`;
-- server -> crea Stripe Checkout Session con prodotti/prezzi validati lato server;
-- Stripe -> pagamento;
-- webhook Stripe -> conferma pagamento;
-- server -> genera link temporaneo/firmato per scaricare il PDF;
-- email -> invia ricevuta e link al cliente.
+- `STRIPE_SECRET_KEY`: chiave segreta Stripe LIVE.
+- `SITE_URL`: dominio pubblico, per esempio `https://www.fitbooks.com`.
+- `DOWNLOAD_SIGNING_SECRET`: stringa casuale lunga (almeno 32+ caratteri).
 
-## Protezione degli ebook
-Non mettere i PDF acquistabili nella cartella pubblica del sito. Conservali in storage privato e rilascia link temporanei solo dopo che il webhook del provider ha confermato il pagamento.
+Non inserire mai `STRIPE_SECRET_KEY` in HTML, `app.js`, GitHub pubblico o altri file frontend.
 
-## Prima della pubblicazione
-- sostituisci prodotti, prezzi e testi demo con quelli reali;
-- collega Stripe o altro provider di pagamento;
-- configura email transazionali e download protetti;
-- inserisci i dati legali/fiscali richiesti per la tua attività e il Paese di vendita;
-- fai verificare privacy, cookie, termini, recesso e fiscalità da un professionista;
-- fai revisionare da un professionista qualificato eventuali contenuti nutrizionali o sanitari.
+## Email automatica (consigliata)
+Per inviare anche un'email dopo l'acquisto:
+- `STRIPE_WEBHOOK_SECRET`
+- `RESEND_API_KEY`
+- `FROM_EMAIL`
 
-## File principali
-- `index.html` — storefront
-- `checkout.html` — checkout
-- `success.html` — conferma ordine
-- `styles.css` — design responsive
-- `app.js` — catalogo e carrello
-- `checkout.js` — riepilogo e ordine demo
-- `success.js` — conferma ordine
-- `legal.html` — bozze informative
-- `ads.txt` — copy pubblicitario
+Crea in Stripe un webhook che punti a:
+`https://TUO-DOMINIO/api/stripe-webhook`
+
+e abilita almeno l'evento `checkout.session.completed`.
+
+## Pubblicazione su Vercel
+1. Carica questa cartella in un progetto Vercel.
+2. Aggiungi le variabili ambiente.
+3. Pubblica.
+4. Collega il dominio.
+5. Esegui prima un test con chiavi TEST e prezzi TEST; solo dopo passa alle chiavi LIVE.
+
+## Nota fiscale
+La configurazione attuale non abilita automaticamente Stripe Tax. Prima del lancio internazionale, verifica IVA e adempimenti per contenuti digitali con il tuo commercialista e configura la strategia fiscale appropriata.
