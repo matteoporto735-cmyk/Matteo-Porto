@@ -12,7 +12,7 @@ const PRODUCTS = {
     files: [{ key: "meal", label: "Meal Prep Senza Stress", filename: "FitBooks_Meal_Prep_Senza_Stress.pdf" }]
   },
   mindful: {
-    priceId: "price_1U9mHcKqS4dFMFhr70JSgqzr",
+    price_1UA96PKqS4dFMFhraUAnckmF
     title: "Mangiare con Più Consapevolezza",
     amount: 990,
     files: [{ key: "mindful", label: "Mangiare con Più Consapevolezza", filename: "FitBooks_Mangiare_con_Piu_Consapevolezza.pdf" }]
